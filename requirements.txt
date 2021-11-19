@@ -1,7 +1,8 @@
+git+https://github.com/ophexor/yt-dl@master
+pyrogram
 TgCrypto
 py-tgcalls
 python-dotenv
-yt_dlp
 youtube_search_python
 requests
 aiohttp
