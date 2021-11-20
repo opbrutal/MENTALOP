@@ -5,7 +5,7 @@ from typing import Callable
 from pyrogram import Client, filters
 from pyrogram.types import Message, Voice, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserAlreadyParticipant
-from Client import callsmusic, queues
+from callsmusic import callsmusic, queues
 from Client.callsmusic import client as USER
 from helpers.admins import get_administrators
 import requests
