@@ -3,7 +3,7 @@ from asyncio.queues import QueueEmpty
 from pyrogram import Client
 from pyrogram.types import Message
 from callsmusic import callsmusic
-from Client import callsmusic
+
 from pytgcalls.types.input_stream import InputAudioStream
 from pytgcalls.types.input_stream import InputStream
 
