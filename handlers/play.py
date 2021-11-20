@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, Voice, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserAlreadyParticipant
 from callsmusic import callsmusic, queues
-from Client.callsmusic import client as USER
+from callsmusic.callsmusic import client as USER
 from helpers.admins import get_administrators
 import requests
 import aiohttp
@@ -108,7 +108,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@Client.on_message(
+@callsmusic.on_message(
     command("Maintainmode") & ~filters.edited & ~filters.bot & ~filters.private
 )
 @authorized_users_only
@@ -151,7 +151,7 @@ async def hfmm(_, message):
         )
 
 
-@Client.on_callback_query(filters.regex(pattern=r"^(cls)$"))
+@callsmusic.on_callback_query(filters.regex(pattern=r"^(cls)$"))
 @cb_admin_check
 @authorized_users_only
 async def m_cb(b, cb):
@@ -167,7 +167,7 @@ async def m_cb(b, cb):
 
 
 # play
-@Client.on_message(
+@callsmusic.on_message(
     command("play")
     & filters.group
     & ~filters.edited
@@ -188,7 +188,7 @@ async def play(_, message: Message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "@eSport_MusicX"
+        user.first_name = "DeCode_Assistant"
     usar = user
     wew = usar.id
     try:
@@ -225,7 +225,7 @@ async def play(_, message: Message):
                     )
     try:
         await USER.get_chat(chid)
-        # lmoa = await client.get_chat_member(chid,wew)
+        # lmoa = await callsmusic.get_chat_member(chid,wew)
     except:
         await lel.edit(
             f"<i>Hey {user.first_name}, assistant userbot is not in this chat, ask admin to send /play command for first time to add it.</i>"
@@ -247,7 +247,7 @@ async def play(_, message: Message):
 
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/afa00227c7607aa7dc9c1.jpg"
+        thumb_name = "https://telegra.ph/file/a7adee6cf365d74734c5d.png"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
@@ -255,8 +255,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🚨 Group", url="t.me/eSportClan"),
-                    InlineKeyboardButton("📡 Updates", url="t.me/eSport_Bots"),
+                    InlineKeyboardButton("🚨 Support", url="t.me/decodesupport"),
+                    InlineKeyboardButton("📡 Updates", url="t.me/DeeCodebots"),
                 ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
@@ -293,8 +293,8 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🚨 Group", url="t.me/eSportClan"),
-                        InlineKeyboardButton("📡 Updates", url="t.me/eSport_Bots"),
+                        InlineKeyboardButton("🚨 Support", url="t.me/decodesupport"),
+                        InlineKeyboardButton("📡 Updates", url="t.me/DeeCodebots"),
                     ],
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
@@ -302,7 +302,7 @@ async def play(_, message: Message):
 
         except Exception as e:
             title = "NaN"
-            thumb_name = "https://telegra.ph/file/afa00227c7607aa7dc9c1.jpg"
+            thumb_name = "https://telegra.ph/file/a7adee6cf365d74734c5d.png"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
@@ -356,8 +356,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🚨 Group", url="t.me/eSportClan"),
-                    InlineKeyboardButton("📡 Updates", url="t.me/eSport_Bots"),
+                    InlineKeyboardButton("🚨 Support", url="t.me/decodesupport"),
+                    InlineKeyboardButton("📡 Updates", url="t.me/DeeCodebots"),
                 ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
