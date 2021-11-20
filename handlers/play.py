@@ -293,16 +293,18 @@ async def play(_, message: Message):
         reply_markup=keyboard)
         os.remove("final.png")
         return await lel.delete()
-       else:
-        callsmusic.pytgcalls.join_group_call(
-                message.chat.id, 
-                InputStream(
-                    InputAudioStream(
-                        file_path,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )         await message.reply_photo(
+      
+        else:
+        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+
+
+         
+              
+         
+              
+  
+             
+       await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
         caption="**❰𝗠𝘂𝘀𝗶𝗰𝗫 ❘ 𝗲𝗦𝗽𝗼𝗿𝘁 🚩❱ Now 😄 𝗣𝗹𝗮𝘆𝗶𝗻𝗴 📀 𝗔𝘁 🤟 `{}`...**".format(
