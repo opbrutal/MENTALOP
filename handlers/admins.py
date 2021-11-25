@@ -70,7 +70,7 @@ async def skip(_, message: Message):
 
         if callsmusic.queues.is_empty(message.chat.id):
             callsmusic.pytgcalls.leave_group_call(message.chat.id)
-    else:
+   else:
      await callsmusic.pytgcalls.change_stream(
      chat_id, 
      InputStream(
