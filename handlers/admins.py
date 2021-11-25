@@ -46,7 +46,7 @@ async def resume(_, message: Message):
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
-    if message.chat.id not in callsmusic.pytgcalls.active_calls:
+    if message.chat.id not in callsmusic.pytgcalls.active_calls
         await message.reply_text("❗ 𝐍𝐨𝐭𝐡𝐢𝐧𝐠 𝐈𝐬 𝐒𝐭𝐫𝐞𝐚𝐦𝐢𝐧𝐠 ✨")
     else:
         try:
@@ -62,7 +62,8 @@ async def stop(_, message: Message):
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
-    if message.chat.id not in callsmusic.pytgcalls.active_calls:
+    if message.chat.id not in callsmusic.pytgcalls.active_calls
+
         await message.reply_text("❗ 𝐍𝐨𝐭𝐡𝐢𝐧𝐠 😔  𝐈𝐬 𝐏𝐥𝐚𝐲𝐢𝐧𝐠 🎶 𝐓𝐨 𝐒𝐤𝐢𝐩 🥀")
     else:
         callsmusic.queues.task_done(message.chat.id)
