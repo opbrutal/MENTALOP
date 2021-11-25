@@ -70,13 +70,22 @@ async def skip(_, message: Message):
 
         if callsmusic.queues.is_empty(message.chat.id):
             callsmusic.pytgcalls.leave_group_call(message.chat.id)
-   
-    else: await callsmusic.pytgcalls.change_stream(
-       chat_id, 
-     InputStream(
-     InputAudioStream(
-     callsmusic.queues.get(chat_id)["file"],
-    ),
-      ),
-    )
+    else:
+        await callsmusic.pytgcalls.change_stream(
+          chat_id, 
+          InputStream(
+            InputAudioStream(
+              callsmusic.queues.get(chat_id)["file"],
+            ),
+          ),
+        )
+          qeue = que.get(chat_id)
+  
+              if qeue:
+      
+                qeue.pop(0)
+    
+                if not qeue:
+       
+                 return
         await message.reply_text("➡️ 𝐒𝐤𝐢𝐩 💫 𝐓𝐡𝐞 𝐂𝐮𝐫𝐫𝐞𝐧𝐭 ✨ 𝐒𝐨𝐧𝐠 🥀")
