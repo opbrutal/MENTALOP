@@ -72,10 +72,10 @@ async def skip(_, message: Message):
             callsmusic.pytgcalls.leave_group_call(message.chat.id)
     else:
         await callsmusic.pytgcalls.change_stream(
-          chat_id, 
+          message.chat.id, 
           InputStream(
             InputAudioStream(
-              callsmusic.queues.get(chat_id)["file"],
+              callsmusic.queues.get(message.chat.id)["file"],
             ),
           ),
         )
