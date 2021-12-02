@@ -1,16 +1,17 @@
 from asyncio.queues import QueueEmpty
-
-from pyrogram import Client
+from config import BOT_USERNAME
+from config import que
+from pyrogram import Client, filters
 from pyrogram.types import Message
-from callsmusic import callsmusic
+import sira
+import DeCalls
+from cache.admins import set
+from helpers.decorators import authorized_users_only, errors
 from helpers.channelmusic import get_chat_id
-
+from helpers.filters import command, other_filters
+from Client import callsmusic
 from pytgcalls.types.input_stream import InputAudioStream
 from pytgcalls.types.input_stream import InputStream
-
-from config import BOT_NAME as BN
-from helpers.filters import command, other_filters
-from helpers.decorators import errors, authorized_users_only
 
 
 @Client.on_message(command("pause") & other_filters)
@@ -22,10 +23,10 @@ async def pause(_, message: Message):
     ) or (
             callsmusic.pytgcalls.active_calls[message.chat.id] == 'paused'
     ):
-        await message.reply_text("❗ 𝐍𝐨𝐭𝐡𝐢𝐧𝐠 𝐈𝐬 𝐏𝐥𝐚𝐲𝐢𝐧𝐠 ✨")
+        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙋𝙡𝙖𝙮𝙞𝙣𝙜...")
     else:
         callsmusic.pytgcalls.pause_stream(message.chat.id)
-        await message.reply_text("▶️ 𝐏𝐚𝐮𝐬𝐞 😔")
+        await message.reply_text("▶️ 𝙋𝙖𝙪𝙨𝙚𝙙.")
 
 
 @Client.on_message(command("resume") & other_filters)
@@ -37,10 +38,10 @@ async def resume(_, message: Message):
     ) or (
             callsmusic.pytgcalls.active_calls[message.chat.id] == 'playing'
     ):
-        await message.reply_text("❗ 𝐍𝐨𝐭𝐡𝐢𝐧𝐠 𝐈𝐬 𝐏𝐥𝐚𝐲𝐢𝐧𝐠 ✨")
+        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙄𝙨 𝙋𝙖𝙪𝙨𝙚𝙙...")
     else:
         callsmusic.pytgcalls.resume_stream(message.chat.id)
-        await message.reply_text("⏸ 𝐑𝐞𝐬𝐮𝐦𝐞 🤩")
+        await message.reply_text("⏸ 𝙍𝙚𝙨𝙪𝙢𝙚𝙙.")
 
 
 @Client.on_message(command("end") & other_filters)
@@ -48,7 +49,7 @@ async def resume(_, message: Message):
 @authorized_users_only
 async def stop(_, message: Message):
     if message.chat.id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("❗ 𝐍𝐨𝐭𝐡𝐢𝐧𝐠 𝐈𝐬 𝐒𝐭𝐫𝐞𝐚𝐦𝐢𝐧𝐠 ✨")
+        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙄𝙨 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜...")
     else:
         try:
             callsmusic.queues.clear(message.chat.id)
@@ -56,7 +57,7 @@ async def stop(_, message: Message):
             pass
 
         callsmusic.pytgcalls.leave_group_call(message.chat.id)
-        await message.reply_text("❌ 𝐒𝐭𝐨𝐩 🛑 𝐒𝐭𝐫𝐞𝐚𝐦𝐢𝐧𝐠 ✨")
+        await message.reply_text("❌ 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜 𝙎𝙩𝙤𝙥𝙥𝙚𝙙.")
 
 
 @Client.on_message(command("skip") & other_filters)
@@ -64,7 +65,7 @@ async def stop(_, message: Message):
 @authorized_users_only
 async def skip(_, message: Message):
     if message.chat.id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("❗ 𝐍𝐨𝐭𝐡𝐢𝐧𝐠 😔  𝐈𝐬 𝐏𝐥𝐚𝐲𝐢𝐧𝐠 🎶 𝐓𝐨 𝐒𝐤𝐢𝐩 🥀")
+        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙄𝙨 𝙋𝙡𝙖𝙮𝙞𝙣𝙜 𝙁𝙤𝙧 𝙎𝙠𝙞𝙥...")
     else:
         callsmusic.queues.task_done(message.chat.id)
 
@@ -73,10 +74,7 @@ async def skip(_, message: Message):
         else:
             callsmusic.pytgcalls.change_stream(
                 message.chat.id,
-                InputStream(
-                  InputAudioStream(
-                    callsmusic.queues.get(message.chat.id)["file"]
-                  ),
-                ),
+                callsmusic.queues.get(message.chat.id)["file"]
             )
-        await message.reply_text("➡️ 𝐒𝐤𝐢𝐩 💫 𝐓𝐡𝐞 𝐂𝐮𝐫𝐫𝐞𝐧𝐭 ✨ 𝐒𝐨𝐧𝐠 🥀")
+
+        await message.reply_text("➡️ 𝙎𝙤𝙣𝙜 𝙃𝙖𝙨 𝘽𝙚𝙚𝙣 𝙎𝙠𝙞𝙥𝙥𝙚𝙙.")
