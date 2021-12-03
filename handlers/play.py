@@ -92,7 +92,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                    & ~filters.via_bot)
 async def play(_, message: Message):
 
-    lel = await message.reply("𝙋𝙧𝙤𝙘𝙚𝙨𝙨𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 𝙎𝙤𝙣𝙜...**")
+    lel = await message.reply("𝙋𝙧𝙤𝙘𝙚𝙨𝙨𝙞𝙣𝙜...𝙒𝙖𝙞𝙩 𝙡'𝙞𝙡 𝙗𝙞𝙩**")
     
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
@@ -100,7 +100,7 @@ async def play(_, message: Message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "Sanki"
+        user.first_name = Alone"
     usar = user
     wew = usar.id
     try:
@@ -226,7 +226,7 @@ async def play(_, message: Message):
         await lel.edit("🔎 **𝙁𝙞𝙣𝙙𝙞𝙣𝙜... 𝙃𝙤𝙡𝙙 𝙊𝙣**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("🔄 **𝙋𝙧𝙤𝙘𝙚𝙨𝙨𝙞𝙣𝙜... 𝙃𝙤𝙡𝙙 𝙊𝙣**")
+        await lel.edit("🔄 **𝙋𝙧𝙤𝙘𝙚𝙨𝙨𝙞𝙣𝙜... 𝙒𝙖𝙞𝙩 𝙡'𝙞𝙡 𝙗𝙞𝙩**")
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -276,7 +276,7 @@ async def play(_, message: Message):
         file_path = await converter.convert(youtube.download(url))
   
     if message.chat.id in callsmusic.pytgcalls.active_calls:
-        position = await queues.put(message.chat.id, file=file_path)
+        position = await queues.put(message.chat.id, file=file=file_path)
         await message.reply_photo(
         photo="final.png", 
         caption="**🎵 𝙎𝙤𝙣𝙜 :** {}\n**🕒 𝘿𝙪𝙧𝙖𝙩𝙞𝙤𝙣 :** {} 𝙢𝙞𝙣\n**👤 𝘼𝙙𝙙𝙚𝙙 𝘽𝙮 :** {}\n\n**#⃣ 𝙌𝙪𝙚𝙪𝙚𝙙 𝙋𝙤𝙨𝙞𝙩𝙞𝙤𝙣 :** {}".format(
@@ -286,7 +286,7 @@ async def play(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     else:
-        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+        callsmusic.pytgcalls.join_group_call(message.chat.id, InputStream (InputAudioStream (file_path, ), ), stream_type=StreamType().local_stream,)
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
