@@ -57,7 +57,7 @@ async def song(client, message):
         }
         song = True
     try:
-        await rkp.edit("𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙃𝙤𝙡𝙙 𝙊𝙣")
+        await rkp.edit("𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙒𝙞𝙨𝙝")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
@@ -91,8 +91,8 @@ async def song(client, message):
         return
     time.time()
     if song:
-        await rkp.edit("𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙃𝙤𝙡𝙙 𝙊𝙣") #ImJanindu
-        lol = "./etc/thumb.jpg"
+        await rkp.edit("𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙎𝙤𝙣𝙜") #ImJanindu
+        lol = "./etc/foreground.png"
         lel = await message.reply_audio(
                  f"{rip_data['id']}.mp3",
                  duration=int(rip_data["duration"]),
