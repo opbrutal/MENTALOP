@@ -98,6 +98,6 @@ async def song(client, message):
                  duration=int(rip_data["duration"]),
                  title=str(rip_data["title"]),
                  performer=str(rip_data["uploader"]),
-                 thumb=lol,
+                 thumb=thumb_name,
                  caption=cap)  #AloneMusic
         await rkp.delete()
