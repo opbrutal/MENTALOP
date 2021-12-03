@@ -289,7 +289,13 @@ async def play(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     else:
-        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+        callsmusic.pytgcalls.join_group_call(message.chat.id, InputStream(
+                    InputAudioStream(
+                        file_path,
+                    ),
+                ),
+                stream_type=StreamType().local_stream,
+            )
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
