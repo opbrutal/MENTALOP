@@ -276,7 +276,7 @@ async def play(_, message: Message):
         file_path = await converter.convert(youtube.download(url))
   
     if message.chat.id in callsmusic.pytgcalls.active_calls:
-        position = await queues.put(message.chat.id, file=file=file_path)
+        position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
         photo="final.png", 
         caption="**🎵 𝙎𝙤𝙣𝙜 :** {}\n**🕒 𝘿𝙪𝙧𝙖𝙩𝙞𝙤𝙣 :** {} 𝙢𝙞𝙣\n**👤 𝘼𝙙𝙙𝙚𝙙 𝘽𝙮 :** {}\n\n**#⃣ 𝙌𝙪𝙚𝙪𝙚𝙙 𝙋𝙤𝙨𝙞𝙩𝙞𝙤𝙣 :** {}".format(
