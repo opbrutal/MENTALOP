@@ -1,79 +1,68 @@
 from asyncio.queues import QueueEmpty
-from config import BOT_NAME
 from config import que
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
 from cache.admins import set
 from helpers.decorators import authorized_users_only, errors
 from helpers.channelmusic import get_chat_id
 from helpers.filters import command, other_filters
-from callsmusic import callsmusic
+from callsmusic import callsmusic, queues
 from pytgcalls.types.input_stream import InputAudioStream
 from pytgcalls.types.input_stream import InputStream
 
 
-@Client.on_message(command("pause") & other_filters)
+ACTV_CALLS = []
+
+@Client.on_message(command(["pause"]) & other_filters)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
-    if (
-            message.chat.id not in callsmusic.pytgcalls.active_calls
-    ) or (
-            callsmusic.pytgcalls.active_calls[message.chat.id] == 'paused'
-    ):
-        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙋𝙡𝙖𝙮𝙞𝙣𝙜...")
-    else:
-        callsmusic.pytgcalls.pause_stream(message.chat.id)
-        await message.reply_text("▶️ 𝙋𝙖𝙪𝙨𝙚𝙙.")
+    await callsmusic.pytgcalls.pause_stream(message.chat.id)
+    await message.reply_text("▶️ 𝙋𝙖𝙪𝙨𝙚𝙙..!")
 
 
-@Client.on_message(command("resume") & other_filters)
+@Client.on_message(command(["resume"]) & other_filters)
 @errors
 @authorized_users_only
 async def resume(_, message: Message):
-    if (
-            message.chat.id not in callsmusic.pytgcalls.active_calls
-    ) or (
-            callsmusic.pytgcalls.active_calls[message.chat.id] == 'playing'
-    ):
-        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙄𝙨 𝙋𝙖𝙪𝙨𝙚𝙙...")
-    else:
-        callsmusic.pytgcalls.resume_stream(message.chat.id)
-        await message.reply_text("⏸ 𝙍𝙚𝙨𝙪𝙢𝙚𝙙.")
+    await callsmusic.pytgcalls.resume_stream(message.chat.id)
+    await message.reply_text("⏸ 𝙍𝙚𝙨𝙪𝙢𝙚𝙙....!")
 
 
-@Client.on_message(command("end") & other_filters)
+@Client.on_message(command(["end"]) & other_filters)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
-    if message.chat.id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙄𝙨 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜...")
-    else:
-        try:
-            callsmusic.queues.clear(message.chat.id)
-        except QueueEmpty:
-            pass
+    try:
+        callsmusic.queues.clear(message.chat.id)
+    except QueueEmpty:
+        pass
 
-        callsmusic.pytgcalls.leave_group_call(message.chat.id)
-        await message.reply_text("❌ 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜 𝙎𝙩𝙤𝙥𝙥𝙚𝙙.")
+    await callsmusic.pytgcalls.leave_group_call(message.chat.id)
+    await message.reply_text("𝗘𝘀𝗽𝗼𝗿𝘁 𝗦𝘁𝗿𝗲𝗮𝗺 𝗘𝗻𝗱𝗲𝗱..!")
 
-
-@Client.on_message(command("skip") & other_filters)
+@Client.on_message(command(["skip"]) & other_filters)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
-    if message.chat.id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("𝙉𝙤 𝘼𝙣𝙮 𝙎𝙤𝙣𝙜 𝙄𝙨 𝙋𝙡𝙖𝙮𝙞𝙣𝙜 𝙁𝙤𝙧 𝙎𝙠𝙞𝙥...")
+    global que
+    chat_id = message.chat.id
+    for x in callsmusic.pytgcalls.active_calls:
+        ACTV_CALLS.append(int(x.chat_id))
+    if int(chat_id) not in ACTV_CALLS:
+        await message.reply_text("❌ 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜 𝙎𝙩𝙤𝙥𝙥𝙚𝙙")
     else:
-        callsmusic.queues.task_done(message.chat.id)
-
-        if callsmusic.queues.is_empty(message.chat.id):
-            callsmusic.pytgcalls.leave_group_call(message.chat.id)
+        queues.task_done(chat_id)
+        
+        if queues.is_empty(chat_id):
+            await callsmusic.pytgcalls.leave_group_call(chat_id)
         else:
-            callsmusic.pytgcalls.change_stream(
-                message.chat.id,
-                callsmusic.queues.get(message.chat.id)["file"]
+            await callsmusic.pytgcalls.change_stream(
+                chat_id, 
+                InputStream(
+                    InputAudioStream(
+                        callsmusic.queues.get(chat_id)["file"],
+                    ),
+                ),
             )
-
-        await message.reply_text("➡️ 𝙎𝙤𝙣𝙜 𝙃𝙖𝙨 𝘽𝙚𝙚𝙣 𝙎𝙠𝙞𝙥𝙥𝙚𝙙.")
+    await message.reply_text("➡️ 𝙎𝙤𝙣𝙜 𝙃𝙖𝙨 𝘽𝙚𝙚𝙣 𝙎𝙠𝙞𝙥𝙥𝙚𝙙...")
