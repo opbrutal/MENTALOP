@@ -39,7 +39,7 @@ async def stop(_, message: Message):
         pass
 
     await callsmusic.pytgcalls.leave_group_call(message.chat.id)
-    await message.reply_text("𝗘𝘀𝗽𝗼𝗿𝘁 𝗦𝘁𝗿𝗲𝗮𝗺 𝗘𝗻𝗱𝗲𝗱..!")
+    await message.reply_text("⭕ 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜 𝙎𝙩𝙤𝙥𝙥𝙚𝙙..!")
 
 @Client.on_message(command(["skip"]) & other_filters)
 @errors
@@ -50,7 +50,7 @@ async def skip(_, message: Message):
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
     if int(chat_id) not in ACTV_CALLS:
-        await message.reply_text("❌ 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜 𝙎𝙩𝙤𝙥𝙥𝙚𝙙")
+        await message.reply_text("❌ 𝙉𝙤𝙩𝙝𝙞𝙣𝙜 𝙄𝙨 𝙎𝙩𝙧𝙚𝙖𝙢𝙞𝙣𝙜..")
     else:
         queues.task_done(chat_id)
         
