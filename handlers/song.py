@@ -1,103 +1,149 @@
 
-import os
-import aiohttp
-import asyncio
-import json
-import sys
-import time
-from youtubesearchpython import SearchVideos
-from pyrogram import filters, Client
-from yt_dlp import YoutubeDL
-from yt_dlp.utils import (
-    ContentTooShortError,
-    DownloadError,
-    ExtractorError,
-    GeoRestrictedError,
-    MaxDownloadsReached,
-    PostProcessingError,
-    UnavailableVideoError,
-    XAttrMetadataError,
-)
 
-@Client.on_message(filters.command("song") & ~filters.edited)
-async def song(client, message):
-    cap = "@Alone_boy_xd_01"
-    url = message.text.split(None, 1)[1]
-    rkp = await message.reply("𝙋𝙧𝙤𝙘𝙚𝙨𝙨𝙞𝙣𝙜...𝙃𝙤𝙡𝙙 𝙊𝙣")
-    if not url:
-        await rkp.edit("**𝙒𝙝𝙞𝙘𝙝 𝙎𝙤𝙣𝙜 𝙔𝙤𝙪 𝙒𝙖𝙣𝙩 ??**\n𝙐𝙨𝙖𝙜𝙚`/song <song name>`")
-    search = SearchVideos(url, offset=1, mode="json", max_results=1)
-    test = search.result()
-    p = json.loads(test)
-    q = p.get("search_result")
+import asyncio
+import math
+import os
+import time
+from random import randint
+from urllib.parse import urlparse
+
+import aiofiles
+import aiohttp
+import requests
+import wget
+import yt_dlp
+from pyrogram import Client, filters
+from pyrogram.errors import FloodWait, MessageNotModified
+from pyrogram.types import Message
+from youtube_search import YoutubeSearch
+from yt_dlp import YoutubeDL
+
+from helpers.decorators import humanbytes
+from helpers.filters import command, other_filters
+
+
+ydl_opts = {
+    'format': 'best',
+    'keepvideo': True,
+    'prefer_ffmpeg': False,
+    'geo_bypass': True,
+    'outtmpl': '%(title)s.%(ext)s',
+    'quite': True
+}
+
+
+@Client.on_message(command(["song", f"song@{bn}"]) & ~filters.edited)
+def song(_, message):
+    query = " ".join(message.command[1:])
+    m = message.reply(" 𝙋𝙧𝙤𝙘𝙚𝙨𝙨𝙞𝙣𝙜...𝙃𝙤𝙡𝙙 𝙊𝙣...")
+    ydl_ops = {"format": "bestaudio[ext=m4a]"}
     try:
-        url = q[0]["link"]
-    except BaseException:
-        return await rkp.edit("𝙁𝙖𝙞𝙡𝙚𝙙 𝙩𝙤 𝙛𝙞𝙣𝙙 𝙩𝙝𝙖𝙩 𝙨𝙤𝙣𝙜.")
-    type = "audio"
-    if type == "audio":
-        opts = {
-            "format": "bestaudio",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "writethumbnail": True,
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
-                    "preferredquality": "320",
-                }
-            ],
-            "outtmpl": "%(id)s.mp3",
-            "quiet": True,
-            "logtostderr": False,
-        }
-        song = True
-    try:
-        await rkp.edit("𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙒𝙞𝙨𝙝")
-        with YoutubeDL(opts) as rip:
-            rip_data = rip.extract_info(url)
-    except DownloadError as DE:
-        await rkp.edit(f"`{str(DE)}`")
-        return
-    except ContentTooShortError:
-        await rkp.edit("`The download content was too short.`")
-        return
-    except GeoRestrictedError:
-        await rkp.edit(
-            "`Video is not available from your geographic location due to geographic restrictions imposed by a website.`"
-        )
-        return
-    except MaxDownloadsReached:
-        await rkp.edit("`Max-downloads limit has been reached.`")
-        return
-    except PostProcessingError:
-        await rkp.edit("`There was an error during post processing.`")
-        return
-    except UnavailableVideoError:
-        await rkp.edit("`Media is not available in the requested format.`")
-        return
-    except XAttrMetadataError as XAME:
-        await rkp.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
-        return
-    except ExtractorError:
-        await rkp.edit("`There was an error during info extraction.`")
-        return
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        link = f"https://youtube.com{results[0]['url_suffix']}"
+        title = results[0]["title"][:40]
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f"{title}.jpg"
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, "wb").write(thumb.content)
+        duration = results[0]["duration"]
+
     except Exception as e:
-        await rkp.edit(f"{str(type(e)): {str(e)}}")
+        m.edit("**𝙒𝙝𝙞𝙘𝙝 𝙎𝙤𝙣𝙜 𝙔𝙤𝙪 𝙒𝙖𝙣𝙩 ??**\n𝙐𝙨𝙖𝙜𝙚`/song <song name>`")
+        print(str(e))
         return
-    time.time()
-    if song:
-        await rkp.edit("𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙎𝙤𝙣𝙜") #ImJanindu
-        lol = "./etc/thumb.jpg"
-        lel = await message.reply_audio(
-                 f"{rip_data['id']}.mp3",
-                 duration=int(rip_data["duration"]),
-                 title=str(rip_data["title"]),
-                 performer=str(rip_data["uploader"]),
-                 thumb=lol,
-                 caption=cap)  #AloneMusic
-        await rkp.delete()
+    m.edit(" 𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙒𝙞𝙨𝙝...")
+    try:
+        with yt_dlp.YoutubeDL(ydl_ops) as ydl:
+            info_dict = ydl.extract_info(link, download=False)
+            audio_file = ydl.prepare_filename(info_dict)
+            ydl.process_info(info_dict)
+        rep = f"**🎧 𝙐𝙥𝙡𝙤𝙖𝙙𝙚𝙙 𝘽𝙮 @Alone_boy_xd_01**"
+        secmul, dur, dur_arr = 1, 0, duration.split(":")
+        for i in range(len(dur_arr) - 1, -1, -1):
+            dur += int(float(dur_arr[i])) * secmul
+            secmul *= 60
+        m.edit(" 𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙎𝙤𝙣𝙜...")
+        message.reply_audio(
+            audio_file,
+            caption=rep,
+            thumb=thumb_name,
+            parse_mode="md",
+            title=title,
+            duration=dur,
+        )
+        m.delete()
+    except Exception as e:
+        m.edit("𝙁𝙖𝙞𝙡𝙚𝙙 𝙩𝙤 𝙛𝙞𝙣𝙙 𝙩𝙝𝙖𝙩 𝙨𝙤𝙣𝙜")
+        print(e)
+
+    try:
+        os.remove(audio_file)
+        os.remove(thumb_name)
+    except Exception as e:
+        print(e)
+
+
+@Client.on_message(
+    command(["vsong", f"vsong@{bn}", "video", f"video@{bn}"]) & ~filters.edited
+)
+async def vsong(client, message):
+    ydl_opts = {
+        "format": "best",
+        "keepvideo": True,
+        "prefer_ffmpeg": False,
+        "geo_bypass": True,
+        "outtmpl": "%(title)s.%(ext)s",
+        "quite": True,
+    }
+    query = " ".join(message.command[1:])
+    try:
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        link = f"https://youtube.com{results[0]['url_suffix']}"
+        title = results[0]["title"][:40]
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f"{title}.jpg"
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, "wb").write(thumb.content)
+        results[0]["duration"]
+        results[0]["url_suffix"]
+        results[0]["views"]
+        message.from_user.mention
+    except Exception as e:
+        print(e)
+    try:
+        msg = await message.reply(" **𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜... 𝙔𝙤𝙪𝙧 𝙑𝙞𝙙𝙚𝙤...**")
+        with YoutubeDL(ydl_opts) as ytdl:
+            ytdl_data = ytdl.extract_info(link, download=True)
+            file_name = ytdl.prepare_filename(ytdl_data)
+    except Exception as e:
+        return await msg.edit(f"𝙁𝙖𝙞𝙡𝙚𝙙 𝙏𝙤 𝙁𝙞𝙣𝙙 𝙔𝙤𝙪𝙧 𝙑𝙞𝙙𝙚𝙤...𝙎𝙤𝙧𝙧𝙮😔")
+    preview = wget.download(thumbnail)
+    await msg.edit("**𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙑𝙞𝙙𝙚𝙤**")
+    await message.reply_video(
+        file_name,
+        duration=int(ytdl_data["duration"]),
+        thumb=preview,
+        caption=ytdl_data["title"],
+    )
+    try:
+        os.remove(file_name)
+        await msg.delete()
+    except Exception as e:
+        print(e)
+
+
+@Client.on_message(command(["lyric", f"lyric@{bn}"]))
+async def lyrics(_, message):
+    try:
+        if len(message.command) < 2:
+            await message.reply_text("» **give a lyric name too.**")
+            return
+        query = message.text.split(None, 1)[1]
+        rep = await message.reply_text("**𝙎𝙚𝙖𝙧𝙘𝙝𝙞𝙣𝙜...𝙒𝙖𝙞𝙩 𝙇'𝙞𝙡 𝘽𝙞𝙩**")
+        resp = requests.get(
+            f"https://api-tede.herokuapp.com/api/lirik?l={query}"
+        ).json()
+        result = f"{resp['data']}"
+        await rep.edit(result)
+    except Exception:
+        await rep.edit("❌ **𝙉𝙤 𝙎𝙪𝙘𝙝 𝙩𝙮𝙥𝙚 𝙊𝙛 𝙇𝙮𝙧𝙞𝙘𝙨 𝙁𝙤𝙪𝙣𝙙 ...𝙎𝙥𝙚𝙡𝙡 𝘾𝙤𝙧𝙧𝙚𝙘𝙩𝙡𝙮.**")
