@@ -92,12 +92,12 @@ async def song(client, message):
     time.time()
     if song:
         await rkp.edit("𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜...𝙔𝙤𝙪𝙧 𝙎𝙤𝙣𝙜") #ImJanindu
-        lol = "./etc/foreground.png"
+        lol = "./etc/thumb.jpg"
         lel = await message.reply_audio(
                  f"{rip_data['id']}.mp3",
                  duration=int(rip_data["duration"]),
                  title=str(rip_data["title"]),
                  performer=str(rip_data["uploader"]),
-                 thumb=thumb_name,
+                 thumb=lol,
                  caption=cap)  #AloneMusic
         await rkp.delete()
