@@ -1,7 +1,7 @@
 git+https://github.com/ophexor/yt-dl@master
 pyrogram
 TgCrypto
-pytgcalls
+py-tgcalls
 python-dotenv
 youtube_search_python
 requests
