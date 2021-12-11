@@ -70,6 +70,7 @@ async def bye(client, message):
             left += 1
             await lol.edit(
                 f"𝘼𝙨𝙨𝙞𝙨𝙩𝙖𝙣𝙩 𝘾𝙤𝙪𝙡𝙙𝙣'𝙩 𝙇𝙚𝙖𝙫𝙚🥺 𝙎𝙤𝙧𝙧𝙮..."
+            )
         except:
             failed += 1
             await lol.edit(
