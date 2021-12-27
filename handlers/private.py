@@ -11,7 +11,7 @@ async def start(_, message: Message):
     await message.reply_text(
         f"""**- 𝙃𝙚𝙮 𝘼𝙢 {bn} 💛🐬,
 
-- 𝙄 𝙘𝙖𝙣 𝙥𝙡𝙖𝙮 𝙢𝙪𝙨𝙞𝙘 𝙞𝙣 𝙮𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥'𝙨 𝙫𝙤𝙞𝙘𝙚 𝙘𝙖𝙡𝙡. 𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙙 𝙗𝙮 [𝙈𝘼𝙃𝙄](https://t.me/ALONE_BOY_XD_01) 💛🤞.
+- 𝙄 𝙘𝙖𝙣 𝙥𝙡𝙖𝙮 𝙢𝙪𝙨𝙞𝙘 𝙞𝙣 𝙮𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥'𝙨 𝙫𝙤𝙞𝙘𝙚 𝙘𝙖𝙡𝙡. 𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙙 𝙗𝙮 [𝘼𝙠](https://t.me/ALONE_BOY_XD_01) 💛🤞.
 
 𝘼𝙙𝙙 𝙢𝙚 𝙩𝙤 𝙮𝙤𝙪𝙧 𝙜𝙧𝙤𝙪𝙥 𝙖𝙣𝙙 𝙥𝙡𝙖𝙮 𝙢𝙪𝙨𝙞𝙘 𝙛𝙧𝙚𝙚𝙡𝙮 🐬💕**
         """,
@@ -19,17 +19,17 @@ async def start(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                         " 𝙊𝙬𝙣𝙚𝙧 ", url="https://t.me/ALONE_BOY_XD_01")
+                         " 𝙊𝙬𝙣𝙚𝙧 ", url="https://t.me/Kingofkohnoor")
                   ],[
                     InlineKeyboardButton(
-                        "😈  𝙎𝙪𝙥𝙥𝙤𝙧𝙩", url="https://t.me/shivamdemon"
+                        "😈  𝙎𝙪𝙥𝙥𝙤𝙧𝙩", url="https://t.me/A_4_AMAN_0fficial"
                     ),
                     InlineKeyboardButton(
-                        "✌️ 𝙁𝙧𝙞𝙚𝙣𝙙", url="https://t.me/Epiphnic"
+                        "✌️ 𝙂𝙍𝙊𝙐𝙋", url="https://t.me/+A6SAM9IsE1tmODVl"
                     )
                 ],[ 
                     InlineKeyboardButton(
-                        "➕ 𝘼𝙙𝙙 𝙏𝙤 𝙔𝙤𝙪𝙧 𝙂𝙧𝙤𝙪𝙥 ➕", url="https://t.me/LEGEND_ALONE_MUSIC_BOT?startgroup=true"
+                        "➕ 𝘼𝙙𝙙 𝙏𝙤 𝙔𝙤𝙪𝙧 𝙂𝙧𝙤𝙪𝙥 ➕", url="https://t.me/AK_XD_MUSIC_BOT?startgroup=true"
                     )]
             ]
         ),
@@ -43,7 +43,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🔊 𝙈𝙖𝙣𝙖𝙜𝙚𝙧", url="https://t.me/ALONE_BOY_XD_01")
+                        "🔊 𝙈𝙖𝙣𝙖𝙜𝙚𝙧", url="https://t.me/A_4_AMAN_0fficial")
                 ]
             ]
         )
