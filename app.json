@@ -1,8 +1,8 @@
 {
-  "name": "Patricia",
+  "name": "AMAN BRUTAL SHIV",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
   "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/Uw9nwiwhi2j8/MusicSanki",
+  "repository": "https://github.com/opbrutal/MENTALOP",
   "stack": "container",
   "env": {
     "SESSION_NAME": {
